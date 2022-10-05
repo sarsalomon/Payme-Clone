@@ -1,10 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-main: #32323b;
+  --color-main-dark: rgba(50, 50, 59, 0.6);
+  --color-main-light: rgba(50, 50, 59, 0.3);
+  --color-brand: #3cc;
+  --color-brand-light: #4ed1d0;
+  --bg-color: #fff;
+  --bg-color-light: #f8f8f8;
+  --bg-color-dark: #e7e7e7;
+  --bg-color-gradient: linear-gradient(#f8f8f8, #fff);
+  --bg-color-gradient-reverse: linear-gradient(#fff, #f8f8f8);
+  --bg-btn-light-before: hsla(0, 0%, 100%, 0.1);
+  --bg-btn-dark-before: rgba(0, 0, 0, 0.022);
+  --bg-loader: hsla(0, 0%, 100%, 0.7);
+  --border-main: #dadada;
+  --border-light: #e5e5e5;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background: #f8f8f8;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -18,7 +42,25 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+::-webkit-scrollbar {
+  width: 15px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 100px;
+  background: var(--color-brand);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-light);
+}
+
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -26,4 +68,73 @@ a {
     color: white;
     background: black;
   }
+} */
+
+.link {
+  transition: .5s;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: var(--color-brand);
+  transition: 0.25s;
+}
+
+.linkCustom {
+  text-decoration: underline;
+  transition: 0.25s;
+}
+
+.linkCustom:hover {
+  text-decoration: none;
+  color: var(--color-brand);
+  transition: 0.25s;
+}
+
+.linearbackground {
+  background-image: linear-gradient(90deg,#fff 30%,#e4e4e4 0,#e4e4e4);
+}
+
+.homephoneimg {
+    background-image: url("https://payme.uz/home-auth.cabd98a08bc196a7f2f7.jpg");
+    position: relative;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: -100px 0;
+}
+
+.homephoneimg::after {
+  z-index: 1;
+  top: 0;
+  right: 0;
+  content: "";
+  position: absolute;
+  width: 3rem;
+  height: 100%;
+  background-image: linear-gradient(90deg,hsla(0,0%,89.4%,0),#e4e4e4);
+}
+
+.homephoneimg::before {
+  top: -10%;
+  left: -15%;
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  height: 125%;
+  aspect-ratio: 1/1;
+  border-top-right-radius: 10%;
+  transform: translateX(-70%) rotate(45deg);
+}
+
+/* USER */
+
+.cabinet-menu {
+  width: 130px;
+  height: calc(100% - 90px);
+  position: fixed;
+  top: 90px;
+  left: 0;
+  overflow: hidden;
+  transition: .3s;
 }
