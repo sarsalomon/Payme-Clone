@@ -5,10 +5,23 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import router from './routes/index';
 import errorHandler from './middleware/ErrorHandlingMiddleware';
+import { ApolloServer } from 'apollo-server-express';
+import typeDefs from './graphql/TypeDefs';
+import resolvers from './graphql/Resolvers';
+
+import { createClient } from 'redis';
+
+export const client = createClient();
+
+client.on('error', (err) => {
+    console.log("Error "+err)
+})
 
 const PORT = process.env.PORT || 4000;
 
 const app: Express = express();
+
+const server = new ApolloServer({typeDefs, resolvers});
 
 app.use(cors());
 app.use(express.json());
@@ -26,6 +39,9 @@ const start = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true, 
         } as ConnectOptions);
+        await server.start();
+        await client.connect();
+        server.applyMiddleware({app});
         app.listen(PORT, () => {console.log(`Servers started port on ${PORT}`)});
     } catch (e) {
         console.log(e);

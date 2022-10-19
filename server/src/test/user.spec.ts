@@ -1,9 +1,5 @@
-import chai, { expect, should, assert } from "chai";
+import chai, { assert } from "chai";
 import chaiHttp from "chai-http";
-import { response } from "express";
-import { resolve } from "path";
-
-// chai.assert()
 
 chai.use(chaiHttp);
 
@@ -19,6 +15,7 @@ describe('Card', () => {
     it('it Test Add Post Card', async () => {
         let user = {
             cardHolderId: 1,
+            cardName: "Yulchiyev Sarvarjon Alijon o'g'li",
             cardHolderName: "Yulchiyev Sarvarjon Alijon o'g'li",
             cardNumber: 87687665435665433,
             cardExperienceDate: 927,
@@ -33,6 +30,7 @@ describe('Card', () => {
             .send(user);
         assert.equal(res.status, 200)
         assert.equal(res.body.cardHolderId, user.cardHolderId)
+        assert.equal(res.body.cardName, user.cardName)
         assert.equal(res.body.cardHolderName, user.cardHolderName)
         assert.equal(res.body.cardNumber, user.cardNumber)
         assert.equal(res.body.cardExperienceDate, user.cardExperienceDate)
@@ -45,6 +43,7 @@ describe('Card', () => {
     it('it Test Exits Card', async () => {
         let user = {
             cardHolderId: 1,
+            cardName: "Yulchiyev Sarvarjon Alijon o'g'li",
             cardHolderName: "Yulchiyev Sarvarjon Alijon o'g'li",
             cardNumber: 87687665435665433,
             cardExperienceDate: 927,
